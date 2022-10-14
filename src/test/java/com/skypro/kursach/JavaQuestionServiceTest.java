@@ -2,8 +2,8 @@ package com.skypro.kursach;
 
 import com.skypro.kursach.Service.QuestionService;
 import com.skypro.kursach.Service.impl.JavaQuestionService;
-import com.skypro.kursach.exception.QuestionAlreadyExistException;
-import com.skypro.kursach.exception.ThereIsNoSuchQuestionException;
+import com.skypro.kursach.exception.AttemptToAddAQuestionThatAlreadyExistsException;
+import com.skypro.kursach.exception.AttemptToDeleteAQuestionThatDoesNotExistException;
 import com.skypro.kursach.model.Question;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -30,10 +30,10 @@ public class JavaQuestionServiceTest {
         assertThat(questionService.getAll()).hasSize(2);
         assertThat(questionService.getAll()).contains(expected,new Question("q2", "a2"));
 
-        assertThatExceptionOfType(QuestionAlreadyExistException.class)
+        assertThatExceptionOfType(AttemptToAddAQuestionThatAlreadyExistsException.class)
                 .isThrownBy(() -> questionService.add(expected));
 
-        assertThatExceptionOfType(QuestionAlreadyExistException.class)
+        assertThatExceptionOfType(AttemptToAddAQuestionThatAlreadyExistsException.class)
                 .isThrownBy(() -> questionService.add("q2", "a2"));
     }
 
@@ -41,12 +41,12 @@ public class JavaQuestionServiceTest {
     public void shouldRemoveAllQuestions(){
         assertThat(questionService.getAll()).isEmpty();
 
-        assertThatExceptionOfType(ThereIsNoSuchQuestionException.class)
+        assertThatExceptionOfType(AttemptToDeleteAQuestionThatDoesNotExistException.class)
                 .isThrownBy(() -> questionService.remove(new Question("test", "test")));
 
         Question expected = add(new Question("q1", "a1"));
 
-        assertThatExceptionOfType(ThereIsNoSuchQuestionException.class)
+        assertThatExceptionOfType(AttemptToDeleteAQuestionThatDoesNotExistException.class)
                 .isThrownBy(() -> questionService.remove(new Question("test", "test")));
 
         questionService.remove(expected);

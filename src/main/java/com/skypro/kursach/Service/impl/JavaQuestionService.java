@@ -1,8 +1,8 @@
 package com.skypro.kursach.Service.impl;
 
 import com.skypro.kursach.Service.QuestionService;
-import com.skypro.kursach.exception.QuestionAlreadyExistException;
-import com.skypro.kursach.exception.ThereIsNoSuchQuestionException;
+import com.skypro.kursach.exception.AttemptToAddAQuestionThatAlreadyExistsException;
+import com.skypro.kursach.exception.AttemptToDeleteAQuestionThatDoesNotExistException;
 import com.skypro.kursach.model.Question;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +28,7 @@ public class JavaQuestionService implements QuestionService {
     @Override
     public Question add(Question question) {
         if (!questions.add(question)) {
-            throw new QuestionAlreadyExistException();
+            throw new AttemptToAddAQuestionThatAlreadyExistsException();
         }
         return question;
     }
@@ -37,7 +37,7 @@ public class JavaQuestionService implements QuestionService {
     @Override
     public Question remove(Question question) {
         if (!questions.remove(question)) {
-            throw new ThereIsNoSuchQuestionException();
+            throw new AttemptToDeleteAQuestionThatDoesNotExistException();
         }
         return question;
     }
