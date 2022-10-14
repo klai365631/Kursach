@@ -21,7 +21,7 @@ public class JavaQuestionServiceTest {
 
 
     @Test
-    public void addTest(){
+    public void positiveAndNegativeTestForAddingAnHuman(){
         assertThat(questionService.getAll()).isEmpty();
         Question expected = add(new Question("q1", "a1"));
 
@@ -38,7 +38,7 @@ public class JavaQuestionServiceTest {
     }
 
     @Test
-    public void removeTest(){
+    public void shouldRemoveAllQuestions(){
         assertThat(questionService.getAll()).isEmpty();
 
         assertThatExceptionOfType(QuestionNotFoundException.class)

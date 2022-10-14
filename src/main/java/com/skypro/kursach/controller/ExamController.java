@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collection;
 
 @RestController
-
 public class ExamController {
 
     private final ExaminerService examinerService;

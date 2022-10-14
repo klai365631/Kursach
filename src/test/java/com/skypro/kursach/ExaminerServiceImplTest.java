@@ -55,7 +55,7 @@ public class ExaminerServiceImplTest {
     }
 
     @Test
-    public void getQuestionsNPositive() {
+    public void theTestOfQuestionsByTheRandomMethod() {
         when(javaQuestionService.getRandomQuestion()).thenReturn(
                 questions.get(0),
                 questions.get(2),
