@@ -3,7 +3,7 @@ package com.skypro.kursach;
 import com.skypro.kursach.Service.QuestionService;
 import com.skypro.kursach.Service.impl.JavaQuestionService;
 import com.skypro.kursach.exception.QuestionAlreadyExistException;
-import com.skypro.kursach.exception.QuestionNotFoundException;
+import com.skypro.kursach.exception.ThereIsNoSuchQuestionException;
 import com.skypro.kursach.model.Question;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -41,12 +41,12 @@ public class JavaQuestionServiceTest {
     public void shouldRemoveAllQuestions(){
         assertThat(questionService.getAll()).isEmpty();
 
-        assertThatExceptionOfType(QuestionNotFoundException.class)
+        assertThatExceptionOfType(ThereIsNoSuchQuestionException.class)
                 .isThrownBy(() -> questionService.remove(new Question("test", "test")));
 
         Question expected = add(new Question("q1", "a1"));
 
-        assertThatExceptionOfType(QuestionNotFoundException.class)
+        assertThatExceptionOfType(ThereIsNoSuchQuestionException.class)
                 .isThrownBy(() -> questionService.remove(new Question("test", "test")));
 
         questionService.remove(expected);

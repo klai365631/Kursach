@@ -2,7 +2,7 @@ package com.skypro.kursach.Service.impl;
 
 import com.skypro.kursach.Service.QuestionService;
 import com.skypro.kursach.exception.QuestionAlreadyExistException;
-import com.skypro.kursach.exception.QuestionNotFoundException;
+import com.skypro.kursach.exception.ThereIsNoSuchQuestionException;
 import com.skypro.kursach.model.Question;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +37,7 @@ public class JavaQuestionService implements QuestionService {
     @Override
     public Question remove(Question question) {
         if (!questions.remove(question)) {
-            throw new QuestionNotFoundException();
+            throw new ThereIsNoSuchQuestionException();
         }
         return question;
     }
